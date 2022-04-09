@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/CurrencyConverterFragment_amountTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:text="amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/CurrencyConverterFragment_amountEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="1"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/CurrencyConverterFragment_amountTextView"
+        app:layout_constraintStart_toStartOf="@+id/CurrencyConverterFragment_amountTextView"
+        app:layout_constraintTop_toBottomOf="@+id/CurrencyConverterFragment_amountTextView" />
+
+    <TextView
+        android:id="@+id/CurrencyConverterFragment_fromTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="from"
+        app:layout_constraintEnd_toEndOf="@+id/CurrencyConverterFragment_amountEditText"
+        app:layout_constraintStart_toStartOf="@+id/CurrencyConverterFragment_amountEditText"
+        app:layout_constraintTop_toBottomOf="@+id/CurrencyConverterFragment_amountEditText" />
+
+    <Spinner
+        android:id="@+id/CurrencyConverterFragment_fromSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/CurrencyConverterFragment_fromTextView"
+        app:layout_constraintStart_toStartOf="@+id/CurrencyConverterFragment_fromTextView"
+        app:layout_constraintTop_toBottomOf="@+id/CurrencyConverterFragment_fromTextView" />
+
+    <TextView
+        android:id="@+id/CurrencyConverterFragment_toTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="to"
+        app:layout_constraintEnd_toEndOf="@+id/CurrencyConverterFragment_fromSpinner"
+        app:layout_constraintStart_toStartOf="@+id/CurrencyConverterFragment_fromSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/CurrencyConverterFragment_fromSpinner" />
+
+    <Spinner
+        android:id="@+id/CurrencyConverterFragment_toSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/CurrencyConverterFragment_toTextView"
+        app:layout_constraintStart_toStartOf="@+id/CurrencyConverterFragment_toTextView"
+        app:layout_constraintTop_toBottomOf="@+id/CurrencyConverterFragment_toTextView" />
+
+    <Button
+        android:id="@+id/CurrencyConverterFragment_calculateButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="변환하기"
+        app:layout_constraintEnd_toEndOf="@+id/CurrencyConverterFragment_toSpinner"
+        app:layout_constraintStart_toStartOf="@+id/CurrencyConverterFragment_toSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/CurrencyConverterFragment_toSpinner" />
+
+    <TextView
+        android:id="@+id/CurrencyConverterFragment_resultTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="결과값"
+        app:layout_constraintEnd_toEndOf="@+id/CurrencyConverterFragment_calculateButton"
+        app:layout_constraintStart_toStartOf="@+id/CurrencyConverterFragment_calculateButton"
+        app:layout_constraintTop_toBottomOf="@+id/CurrencyConverterFragment_calculateButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>
