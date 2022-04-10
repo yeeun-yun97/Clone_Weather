@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.ActivityMain_root, CurrencyConverterFragment())
+        transaction.add(R.id.ActivityMain_root, CurrencyConverterFragment.newInstance())
         transaction.commit()
     }
 }

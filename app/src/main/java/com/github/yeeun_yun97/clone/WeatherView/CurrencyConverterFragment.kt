@@ -7,10 +7,25 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 
-class CurrencyConverterFragment : Fragment() {
+class CurrencyConverterFragment private constructor() : Fragment() {
 
     private val currencyExchangeMap =
         mapOf("USD" to 1.0, "EUR" to 0.9, "JPY" to 110.0, "KRW" to 1150.0)
+    private lateinit var from: String
+    private lateinit var to: String
+
+    companion object {
+        fun newInstance(): Fragment {
+            val fragment = CurrencyConverterFragment()
+            val args = Bundle().apply {
+                putString("from", "KRW")
+                putString("to", "USD")
+            }
+            fragment.arguments = args
+            return fragment
+        }
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,6 +33,10 @@ class CurrencyConverterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_currency_converter, container, false)
+
+        from = requireArguments().getString("from", "USD")
+        to = requireArguments().getString("to", "USD")
+
 
         val calculateButton =
             view.findViewById<Button>(R.id.CurrencyConverterFragment_calculateButton)
@@ -34,7 +53,9 @@ class CurrencyConverterFragment : Fragment() {
         )
         currencySpinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         fromCurrencySpinner.adapter = currencySpinnerArrayAdapter
+        fromCurrencySpinner.setSelection(currencySpinnerArrayAdapter.getPosition(from))
         toCurrencySpinner.adapter = currencySpinnerArrayAdapter
+        toCurrencySpinner.setSelection(currencySpinnerArrayAdapter.getPosition(to))
 
         val itemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -56,10 +77,8 @@ class CurrencyConverterFragment : Fragment() {
                 toCurrencySpinner.selectedItem.toString()
             ).toString()
         }
-
         return view
     }
-
 
 
     private fun calculateCurrency(amount: Double, from: String, to: String): Double {
