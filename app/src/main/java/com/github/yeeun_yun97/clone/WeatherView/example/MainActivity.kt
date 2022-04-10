@@ -1,7 +1,8 @@
-package com.github.yeeun_yun97.clone.WeatherView
+package com.github.yeeun_yun97.clone.WeatherView.example
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.github.yeeun_yun97.clone.WeatherView.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

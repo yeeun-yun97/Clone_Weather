@@ -1,4 +1,4 @@
-package com.github.yeeun_yun97.clone.WeatherView
+package com.github.yeeun_yun97.clone.WeatherView.example
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import com.github.yeeun_yun97.clone.WeatherView.R
 
 class CurrencyConverterFragment private constructor() : Fragment() {
 
