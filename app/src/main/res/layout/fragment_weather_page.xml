@@ -3,8 +3,8 @@
 <layout>
     <data>
         <variable
-            name="weatherData"
-            type="com.github.yeeun_yun97.clone.weather_view.model.WeatherData" />
+            name="weatherViewModel"
+            type="com.github.yeeun_yun97.clone.weather_view.viewmodel.WeatherViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@{weatherData.status}"
+            android:text="@{weatherViewModel.weatherData.status}"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -52,7 +52,7 @@
             android:id="@+id/temperatureTextView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="@{String.valueOf(weatherData.temperature)}"
+            android:text="@{String.valueOf(weatherViewModel.weatherData.temperature)}"
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/weatherImageView"

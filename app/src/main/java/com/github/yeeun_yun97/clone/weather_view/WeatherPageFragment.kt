@@ -8,14 +8,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.github.yeeun_yun97.clone.weather_view.databinding.FragmentWeatherPageBinding
 import com.github.yeeun_yun97.clone.weather_view.model.WeatherData
+import com.github.yeeun_yun97.clone.weather_view.viewmodel.WeatherViewModel
 
 class WeatherPageFragment : Fragment() {
-    private lateinit var weatherData:WeatherData
+    private lateinit var weatherViewModel:WeatherViewModel
 
     companion object{
-        fun newInstance(weatherData:WeatherData):WeatherPageFragment{
+        fun newInstance(weatherViewModel:WeatherViewModel):WeatherPageFragment{
             val fragment = WeatherPageFragment()
-            fragment.weatherData=weatherData
+            fragment.weatherViewModel=weatherViewModel
             return fragment
         }
     }
@@ -28,8 +29,7 @@ class WeatherPageFragment : Fragment() {
     ): View? {
         val binding: FragmentWeatherPageBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_weather_page, container, false)
-        binding.weatherData = weatherData
-
+        binding.weatherViewModel = weatherViewModel
         return binding.root
     }
 }
