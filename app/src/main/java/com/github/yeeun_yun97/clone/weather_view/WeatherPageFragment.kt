@@ -6,18 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import com.github.yeeun_yun97.clone.weather_view.databinding.FragmentWeatherPageBinding
-import com.github.yeeun_yun97.clone.weather_view.model.WeatherData
 import com.github.yeeun_yun97.clone.weather_view.viewmodel.WeatherViewModel
 
 class WeatherPageFragment : Fragment() {
-    private lateinit var weatherViewModel:WeatherViewModel
+    private val weatherViewModel:WeatherViewModel by activityViewModels()
 
     companion object{
-        fun newInstance(weatherViewModel:WeatherViewModel):WeatherPageFragment{
-            val fragment = WeatherPageFragment()
-            fragment.weatherViewModel=weatherViewModel
-            return fragment
+        fun newInstance(): WeatherPageFragment {
+            return WeatherPageFragment()
         }
     }
 
