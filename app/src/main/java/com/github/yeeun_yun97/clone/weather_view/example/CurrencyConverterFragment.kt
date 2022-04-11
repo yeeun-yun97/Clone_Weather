@@ -1,4 +1,4 @@
-package com.github.yeeun_yun97.clone.WeatherView.example
+package com.github.yeeun_yun97.clone.weather_view.example
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import com.github.yeeun_yun97.clone.WeatherView.R
+import com.github.yeeun_yun97.clone.weather_view.R
 
-class CurrencyConverterFragment private constructor() : Fragment() {
+class CurrencyConverterFragment : Fragment() {
 
     private val currencyExchangeMap =
         mapOf("USD" to 1.0, "EUR" to 0.9, "JPY" to 110.0, "KRW" to 1150.0)

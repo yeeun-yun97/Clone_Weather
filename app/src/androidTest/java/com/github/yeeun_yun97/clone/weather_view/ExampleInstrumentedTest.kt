@@ -1,4 +1,4 @@
-package com.github.yeeun_yun97.clone.WeatherView
+package com.github.yeeun_yun97.clone.weather_view
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
