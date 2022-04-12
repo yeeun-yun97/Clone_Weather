@@ -3,8 +3,8 @@ package com.github.yeeun_yun97.clone.weather_view.model
 import android.util.Log
 import com.github.yeeun_yun97.clone.weather_view.R
 
-data class WeatherData(val status: String, val temperature: Int) {
-    public val icon: Int = iconMap.get(status)!!
+data class WeatherData(var status: String, var temperature: Int) {
+    public var icon: Int = iconMap.get(status)!!
 
     companion object {
         val iconMap: HashMap<String, Int> = hashMapOf(
