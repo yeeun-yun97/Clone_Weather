@@ -9,7 +9,7 @@ class WeatherViewModel :ViewModel(){
     val weatherData: MutableLiveData<WeatherData> by lazy { loadWeather() }
 
     private fun loadWeather(): MutableLiveData<WeatherData> {
-        return MutableLiveData(WeatherData("맑음", 18))
+        return MutableLiveData(WeatherData("흐림", 18))
     }
 
 }
