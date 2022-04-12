@@ -1,6 +1,5 @@
 package com.github.yeeun_yun97.clone.weather_view.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.yeeun_yun97.clone.weather_view.model.WeatherData
