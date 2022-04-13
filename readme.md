@@ -32,7 +32,7 @@ Shimmer-android 라이브러리를 활용하여 로딩 화면을 추가하였다
 <br>shimmer 적용된 레이아웃을 숨기고, 실제 레이아웃을 보여주도록 만들어보았다.    
        
 BindingAdapter을 사용해 보았다.
-->image resource id를 xml attribute로 넣으면 드로어블로 설정하는 간단한 것을 만들어 보았다.    
+->image resource id를 xml attribute로 넣으면 imageView로 이미지를 설정하는 간단한 것을 만들어 보았다.    
 
 ## 기능 소개
 
