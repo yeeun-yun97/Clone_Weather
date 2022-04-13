@@ -1,44 +1,62 @@
 package com.github.yeeun_yun97.clone.weather_view.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.yeeun_yun97.clone.weather_view.WeatherApi
 import com.github.yeeun_yun97.clone.weather_view.model.WeatherData
 import com.github.yeeun_yun97.clone.weather_view.model.WeatherResponse
+import com.github.yeeun_yun97.clone.weather_view.repository.WeatherRepository
 import com.github.yeeun_yun97.clone.weather_view.secret.SecretKeys
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.*
 
 class WeatherViewModel : ViewModel() {
-    var weatherData: MutableLiveData<WeatherData> = MutableLiveData(WeatherData("맑음", 0))
+    val weatherData = MutableLiveData<WeatherData>()
 
-    init {
-        loadWeather()
+
+    private val repository = WeatherRepository()
+
+    private var job: Job = Job()
+    private val loading = MutableLiveData<Boolean>()
+
+    private val errorMessage = MutableLiveData<String>()
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        onError("Exception handled: ${throwable.localizedMessage}")
     }
 
-    private fun loadWeather() {
-        val response = WeatherApi.getWeatherService()
-            .getWeatherData(37.0, 126.0, SecretKeys.APP_D)
-        val callback = object : Callback<WeatherResponse> {
-            override fun onResponse(
-                call: Call<WeatherResponse>,
-                response: Response<WeatherResponse>
-            ) {
-                var temperature: Int = response.body()!!.main.get("temp")!!.toDouble().toInt()
-                val status: String = when (response.body()!!.weather[0]["main"]!!) {
-                    "sunny" -> "맑음"
-                    else -> "흐림"
-                }
-                Log.i("Weather Service Success", "온도: ${temperature}, 날씨: ${status}")
-                weatherData.postValue(weatherData.value!!.copy(temperature=temperature,status=status))
-            }
+    init{
+        this.loadWeatherData()
+    }
 
-            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                Log.i("Weather Service failed", t.stackTraceToString())
+    private fun onError(message: String) {
+        errorMessage.value = message
+        loading.value = false
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job?.cancel()
+    }
+
+    private fun loadWeatherData() {
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+            val response = repository.loadWeatherData()
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    val body: WeatherResponse = response.body()!!
+                    val status: String = when (response.body()!!.weather[0]["main"]!!) {
+                        "sunny" -> "맑음"
+                        else -> "흐림"
+                    }
+                    val data = WeatherData(status, body.main["temp"]!!.toDouble().toInt())
+                    Log.i("debug coroutine response",data.toString())
+                    weatherData.postValue(data)
+                } else {
+                    onError("Error: ${response.message()}")
+                }
             }
         }
-        response.enqueue(callback)
     }
+
 }
