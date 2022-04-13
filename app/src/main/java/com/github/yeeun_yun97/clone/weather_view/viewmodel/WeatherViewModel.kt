@@ -12,9 +12,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class WeatherViewModel : ViewModel() {
-    var weatherData: MutableLiveData<WeatherData> = loadWeather()
+    var weatherData: MutableLiveData<WeatherData> = MutableLiveData(WeatherData("맑음", 0))
 
-    private fun loadWeather(): MutableLiveData<WeatherData> {
+    init {
+        loadWeather()
+    }
+
+    private fun loadWeather() {
         val response = WeatherApi.getWeatherService()
             .getWeatherData(37.0, 126.0, SecretKeys.APP_D)
         val callback = object : Callback<WeatherResponse> {
@@ -24,13 +28,12 @@ class WeatherViewModel : ViewModel() {
             ) {
                 var temperature: Int =
                     ((response.body()!!.main.get("temp")!!.toDouble() - 32) / 1.8).toInt()
-                val status:String =when (response.body()!!.weather[0]["main"]!!) {
+                val status: String = when (response.body()!!.weather[0]["main"]!!) {
                     "sunny" -> "맑음"
                     else -> "흐림"
                 }
                 Log.i("Weather Service Success", "온도: ${temperature}, 날씨: ${status}")
-                weatherData.value?.temperature=temperature
-                weatherData.value?.status =status
+                weatherData.postValue(weatherData.value!!.copy(temperature=temperature,status=status))
             }
 
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
@@ -38,8 +41,5 @@ class WeatherViewModel : ViewModel() {
             }
         }
         response.enqueue(callback)
-
-        return MutableLiveData(WeatherData("맑음", 18))
     }
-
 }

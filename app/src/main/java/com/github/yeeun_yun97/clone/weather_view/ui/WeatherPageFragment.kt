@@ -28,7 +28,7 @@ class WeatherPageFragment : Fragment() {
     ): View? {
         val binding: FragmentWeatherPageBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_weather_page, container, false)
-        binding.lifecycleOwner = requireActivity()
+        binding.lifecycleOwner = this
         binding.viewModel=weatherViewModel
         return binding.root
     }
