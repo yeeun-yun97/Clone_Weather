@@ -26,8 +26,7 @@ class WeatherViewModel : ViewModel() {
                 call: Call<WeatherResponse>,
                 response: Response<WeatherResponse>
             ) {
-                var temperature: Int =
-                    ((response.body()!!.main.get("temp")!!.toDouble() - 32) / 1.8).toInt()
+                var temperature: Int = response.body()!!.main.get("temp")!!.toDouble().toInt()
                 val status: String = when (response.body()!!.weather[0]["main"]!!) {
                     "sunny" -> "맑음"
                     else -> "흐림"

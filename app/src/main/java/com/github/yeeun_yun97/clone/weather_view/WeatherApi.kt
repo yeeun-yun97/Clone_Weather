@@ -22,7 +22,7 @@ interface WeatherApi {
     fun getWeatherData(
         @Query("lat") latitude: Double,
         @Query("lon") longitude: Double,
-        @Query("appid") appId: String
-//        @Query("lang") lang: String = "kr"
+        @Query("appid") appId: String,
+        @Query("units") lang: String = "Metric"
     ): Call<WeatherResponse>
 }
