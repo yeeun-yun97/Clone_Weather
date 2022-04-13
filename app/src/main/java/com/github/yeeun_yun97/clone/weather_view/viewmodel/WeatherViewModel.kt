@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.yeeun_yun97.clone.weather_view.WeatherApi
 import com.github.yeeun_yun97.clone.weather_view.model.WeatherData
 import com.github.yeeun_yun97.clone.weather_view.model.WeatherResponse
@@ -25,9 +26,6 @@ class WeatherViewModel : ViewModel() {
         onError("Exception handled: ${throwable.localizedMessage}")
     }
 
-    init{
-        this.loadWeatherData()
-    }
 
     private fun onError(message: String) {
         errorMessage.value = message
@@ -39,7 +37,7 @@ class WeatherViewModel : ViewModel() {
         job?.cancel()
     }
 
-    private fun loadWeatherData() {
+    fun loadWeatherData(shimmerStop: ()->Unit) {
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response = repository.loadWeatherData()
             withContext(Dispatchers.Main) {
@@ -49,9 +47,12 @@ class WeatherViewModel : ViewModel() {
                         "sunny" -> "맑음"
                         else -> "흐림"
                     }
-                    val data = WeatherData(status, body.main["temp"]!!.toDouble().toInt())
+                    val temperature = body.main["temp"]!!.toDouble().toInt()
+                    val data = WeatherData(status, temperature)
                     Log.i("debug coroutine response",data.toString())
                     weatherData.postValue(data)
+                    Thread.sleep(6000)
+                    shimmerStop()
                 } else {
                     onError("Error: ${response.message()}")
                 }

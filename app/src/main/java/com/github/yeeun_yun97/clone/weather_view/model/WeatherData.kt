@@ -11,4 +11,8 @@ data class WeatherData(var status: String, var temperature: Int) {
             "흐림" to R.drawable.ic_baseline_cloud_24
         )
     }
+
+    fun getStringTemperature():String{
+        return "${temperature}°C"
+    }
 }

@@ -37,6 +37,9 @@ android {
 }
 
 dependencies {
+    //skeleton loading view
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
     //coroutine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 

@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
             name="viewModel"
             type="com.github.yeeun_yun97.clone.weather_view.viewmodel.WeatherViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.WeatherPageFragment" >
+        tools:context=".ui.WeatherPageFragment">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                layout="@layout/fragment_shimmer_weather_page"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <ImageView
             android:id="@+id/weatherImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginStart="15dp"
             app:imageUrl="@{viewModel.weatherData.icon}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,8 +50,8 @@
             android:layout_marginEnd="15dp"
             android:text="현재 날씨"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/weatherImageView"
-            app:layout_constraintTop_toTopOf="@+id/weatherImageView" />
+            app:layout_constraintStart_toEndOf="@id/weatherImageView"
+            app:layout_constraintTop_toTopOf="@id/weatherImageView" />
 
         <TextView
             android:id="@+id/weatherTextView"
@@ -44,21 +62,22 @@
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintEnd_toEndOf="@id/textView"
+            app:layout_constraintStart_toStartOf="@id/textView"
+            app:layout_constraintTop_toBottomOf="@id/textView" />
 
         <TextView
             android:id="@+id/temperatureTextView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="@{String.valueOf(viewModel.weatherData.temperature)}"
+            android:text="@{viewModel.weatherData.getStringTemperature}"
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/weatherImageView"
-            app:layout_constraintEnd_toEndOf="@+id/weatherTextView"
-            app:layout_constraintStart_toStartOf="@+id/weatherTextView"
-            app:layout_constraintTop_toBottomOf="@+id/weatherTextView" />
+            app:layout_constraintEnd_toEndOf="@id/weatherTextView"
+            app:layout_constraintStart_toStartOf="@id/weatherTextView"
+            app:layout_constraintTop_toBottomOf="@id/weatherTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
