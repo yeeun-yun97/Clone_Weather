@@ -30,8 +30,7 @@ class WeatherPageFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = weatherViewModel
 
-        this.shimmerStart()
-        weatherViewModel.loadWeatherData(::shimmerStop)
+        weatherViewModel.loadWeatherData(::shimmerStart,::shimmerStop)
 
         return binding.root
     }
