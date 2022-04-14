@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.yeeun_yun97.clone.weather_view.model.WeatherData
-import com.github.yeeun_yun97.clone.weather_view.model.WeatherResponse
 import com.github.yeeun_yun97.clone.weather_view.repository.WeatherRepository
 import kotlinx.coroutines.*
 

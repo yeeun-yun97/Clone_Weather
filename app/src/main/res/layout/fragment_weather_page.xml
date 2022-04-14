@@ -70,7 +70,7 @@
             android:id="@+id/temperatureTextView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="@{viewModel.weatherData.getStringTemperature}"
+            android:text="@{viewModel.weatherData.temperature}"
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/weatherImageView"
