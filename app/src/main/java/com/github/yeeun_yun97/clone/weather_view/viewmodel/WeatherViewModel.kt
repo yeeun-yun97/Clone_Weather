@@ -28,7 +28,7 @@ class WeatherViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        job?.cancel()
+        job.cancel()
     }
 
     fun loadWeatherData(shimmerStart: () -> Unit, shimmerStop: () -> Unit) {

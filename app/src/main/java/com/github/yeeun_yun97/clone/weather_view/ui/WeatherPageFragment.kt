@@ -35,7 +35,7 @@ class WeatherPageFragment : Fragment() {
         return binding.root
     }
 
-    fun shimmerStart() {
+    private fun shimmerStart() {
         binding.weatherImageView.visibility=View.GONE
         binding.temperatureTextView.visibility=View.GONE
         binding.textView.visibility=View.GONE
@@ -45,7 +45,7 @@ class WeatherPageFragment : Fragment() {
         binding.shimmerLayout.startShimmer()
     }
 
-    fun shimmerStop(){
+    private fun shimmerStop(){
         binding.shimmerLayout.visibility = View.GONE
 
         binding.weatherImageView.visibility=View.VISIBLE

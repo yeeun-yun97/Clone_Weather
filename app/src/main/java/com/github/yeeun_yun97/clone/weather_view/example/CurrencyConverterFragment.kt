@@ -10,8 +10,7 @@ import com.github.yeeun_yun97.clone.weather_view.R
 
 class CurrencyConverterFragment : Fragment() {
 
-    private val currencyExchangeMap =
-        mapOf("USD" to 1.0, "EUR" to 0.9, "JPY" to 110.0, "KRW" to 1150.0)
+    private val currencyExchangeMap = mapOf("USD" to 1.0, "EUR" to 0.9, "JPY" to 110.0, "KRW" to 1150.0)
     private lateinit var from: String
     private lateinit var to: String
 
