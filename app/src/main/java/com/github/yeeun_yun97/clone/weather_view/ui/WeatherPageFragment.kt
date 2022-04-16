@@ -13,7 +13,8 @@ import com.github.yeeun_yun97.clone.weather_view.viewmodel.WeatherViewModel
 
 class WeatherPageFragment : Fragment() {
     private val weatherViewModel: WeatherViewModel by activityViewModels()
-    private lateinit var binding: FragmentWeatherPageBinding
+    private var _binding: FragmentWeatherPageBinding? = null
+    private val binding: FragmentWeatherPageBinding get()= _binding!!
 
     companion object {
         fun newInstance(): WeatherPageFragment {
@@ -25,7 +26,7 @@ class WeatherPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =
+        _binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_weather_page, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = weatherViewModel
@@ -33,6 +34,11 @@ class WeatherPageFragment : Fragment() {
         weatherViewModel.loadWeatherData(::shimmerStart,::shimmerStop)
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding=null
     }
 
     private fun shimmerStart() {
@@ -47,6 +53,7 @@ class WeatherPageFragment : Fragment() {
 
     private fun shimmerStop(){
         binding.shimmerLayout.visibility = View.GONE
+
 
         binding.weatherImageView.visibility=View.VISIBLE
         binding.temperatureTextView.visibility=View.VISIBLE

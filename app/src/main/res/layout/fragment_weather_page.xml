@@ -10,7 +10,6 @@
             type="com.github.yeeun_yun97.clone.weather_view.viewmodel.WeatherViewModel" />
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,6 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <include
+                android:id="@+id/shimmer"
                 layout="@layout/fragment_shimmer_weather_page"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
