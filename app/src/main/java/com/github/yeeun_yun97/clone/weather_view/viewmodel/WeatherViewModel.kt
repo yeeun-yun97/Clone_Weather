@@ -26,26 +26,20 @@ class WeatherViewModel : ViewModel() {
         job.cancel()
     }
 
-    fun loadWeatherData(shimmerStart: () -> Unit, shimmerStop: () -> Unit) {
-        shimmerStart()
+    fun loadWeatherData() {
 
-        job = viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                val response = repository.loadWeatherData()
-                if (response.isSuccessful) {
-                    val body = response.body()!!
-                    val status = body.weather[0]["main"]!!
-                    val temperature = body.main["temp"]!!.toDouble().toInt()
-                    val data = WeatherData(status, temperature)
-                    Log.d("created Model from API", data.toString())
+        job = viewModelScope.launch(Dispatchers.IO) {
+            val response = repository.loadWeatherData()
+            if (response.isSuccessful) {
+                val body = response.body()!!
+                val status = body.weather[0]["main"]!!
+                val temperature = body.main["temp"]!!.toDouble().toInt()
+                val data = WeatherData(status, temperature)
+                Log.d("created Model from API", data.toString())
 
-                    weatherData.postValue(data)
-                    withContext(Dispatchers.Main) {
-                        shimmerStop()
-                    }
-                } else {
-                    onError("Error: ${response.message()}")
-                }
+                weatherData.postValue(data)
+            } else {
+                onError("Error: ${response.message()}")
             }
         }
     }

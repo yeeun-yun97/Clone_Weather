@@ -15,23 +15,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.WeatherPageFragment">
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmerLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <include
-                android:id="@+id/shimmer"
-                layout="@layout/fragment_shimmer_weather_page"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
         <ImageView
             android:id="@+id/weatherImageView"
             android:layout_width="100dp"
