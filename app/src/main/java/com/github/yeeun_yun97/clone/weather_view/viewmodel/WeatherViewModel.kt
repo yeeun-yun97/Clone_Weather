@@ -3,6 +3,7 @@ package com.github.yeeun_yun97.clone.weather_view.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.github.yeeun_yun97.clone.weather_view.model.WeatherData
 import com.github.yeeun_yun97.clone.weather_view.repository.WeatherRepository
 import kotlinx.coroutines.*
@@ -11,15 +12,9 @@ class WeatherViewModel : ViewModel() {
     val weatherData = MutableLiveData<WeatherData>()
 
     private val repository = WeatherRepository()
-
     private var job: Job = Job()
     private val loading = MutableLiveData<Boolean>()
-
     private val errorMessage = MutableLiveData<String>()
-    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        onError("Exception handled: ${throwable.localizedMessage}")
-    }
-
 
     private fun onError(message: String) {
         errorMessage.value = message
@@ -33,18 +28,21 @@ class WeatherViewModel : ViewModel() {
 
     fun loadWeatherData(shimmerStart: () -> Unit, shimmerStop: () -> Unit) {
         shimmerStart()
-        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = repository.loadWeatherData()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    val body        = response.body()!!
-                    val status      = body.weather[0]["main"]!!
-                    val temperature = body.main["temp"]!!.toDouble().toInt()
 
-                    val data        = WeatherData(status, temperature)
+        job = viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val response = repository.loadWeatherData()
+                if (response.isSuccessful) {
+                    val body = response.body()!!
+                    val status = body.weather[0]["main"]!!
+                    val temperature = body.main["temp"]!!.toDouble().toInt()
+                    val data = WeatherData(status, temperature)
                     Log.d("created Model from API", data.toString())
+
                     weatherData.postValue(data)
-                    shimmerStop()
+                    withContext(Dispatchers.Main) {
+                        shimmerStop()
+                    }
                 } else {
                     onError("Error: ${response.message()}")
                 }

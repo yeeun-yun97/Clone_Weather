@@ -14,5 +14,5 @@ class WeatherRepository {
             37.0,
             128.0,
             SecretKeys.APP_D
-        ).awaitResponse()
+        )
 }
