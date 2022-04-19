@@ -1,4 +1,4 @@
-package com.github.yeeun_yun97.clone.weather_view
+package com.github.yeeun_yun97.clone.weather_view.repository
 
 import com.github.yeeun_yun97.clone.weather_view.model.WeatherResponse
 import retrofit2.Response

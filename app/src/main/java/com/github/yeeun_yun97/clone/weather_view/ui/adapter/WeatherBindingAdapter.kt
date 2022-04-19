@@ -1,4 +1,4 @@
-package com.github.yeeun_yun97.clone.weather_view
+package com.github.yeeun_yun97.clone.weather_view.ui.adapter
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
