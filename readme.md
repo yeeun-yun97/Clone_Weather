@@ -1,5 +1,5 @@
 # Clone_Weather
-### retrofit으로 날씨 openAPI에서 데이터를 불러와서 현재의 날씨와 온도를 보여주는 안드로이드 애플리케이션
+### retrofit으로 날씨 openAPI에서 데이터를 불러와서, <br>현재의 날씨와 온도를 보여주는 안드로이드 애플리케이션
 
 ## 스택
 <img src="https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=Android&logoColor=black"/> <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=Kotlin&logoColor=black"/> 
