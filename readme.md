@@ -36,8 +36,6 @@ DataBinding을 사용하였다. (+BindingAdapter을 사용해 보았다.)
 
 ## 기능 소개
 
-### OpenAPI를 호출하여 리스폰스를 받을 때까지 로딩 애니메이션을 보여준다.
-
-
-### 현재 날씨와 온도를 화면에 표시한다.(서울기준)
+### OpenAPI를 호출하여 리스폰스를 받을 때까지 로딩 애니메이션을 보여준다.<br>+현재 날씨와 온도를 화면에 표시한다.(서울기준)
+![shimmerView](https://user-images.githubusercontent.com/60867063/163924150-adada2f2-d888-4ba1-9c84-52b4de8c4e9d.gif)
 
