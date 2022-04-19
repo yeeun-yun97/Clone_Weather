@@ -28,8 +28,10 @@ Coroutine을 사용해보았다.
 ->scope는 viewModelScope를 사용하여 뷰모델의 생명주기를 따르게 하였다.
 
 Shimmer-android 라이브러리를 활용하여 로딩 화면을 추가하였다.    
-->일단 shimmer 적용된 레이아웃을 보여주다가, ViewModel이 화면을 표시하기 위한 모델을 가져오는 대로, 
-<br>shimmer 적용된 레이아웃을 숨기고, 실제 레이아웃을 보여주도록 만들어보았다.    
+->Shimmer 애니메이션이 들어간 프래그먼트와, 정보를 담을 수 있는 프래그먼트 (쌍둥이처럼 비슷하 생긴) 두 개를 준비한다.
+->MainActivity는 일단 전자를 부착한 후, 뷰모델의 LiveData를 관찰할 객체를 등록한다.
+->뷰모델이 API에서 데이터를 받아와 postValue() 메서드로 LiveData에 변경사항이 생긴다.
+->아까 등록한 객체가 MainActivity의 shimmer 애니메이션 프래그먼트를 정보를 담느 프래그먼트로 replace()한다.
        
 DataBinding을 사용하였다. (+BindingAdapter을 사용해 보았다.)
 ->image resource id를 xml attribute로 넣으면 imageView로 이미지를 설정하는 간단한 어댑터을 만들어 보았다.    
