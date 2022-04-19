@@ -16,25 +16,28 @@ Fragment에 대해서
 
 retrofit을 사용하기    
 ->retrofit 기본 사용 방법을 복습할 수 있었다.    
-->open API 출처 : https://openweathermap.org/   
+->OpenAPI 출처 : https://openweathermap.org/   
 
 
 ### 새로 추가해본 것
-
 MVVM 구조를 서툴게나마 만들어보았다.  
 ->ViewModel이 Model을 MutableLiveData로 가지며, 모델을 API호출로 가져오는 로직도 가지도록 만들었다.
 
 Coroutine을 사용해보았다.    
-->
+->코루틴+retrofit으로 OpenApi와 비동기적으로 통신하게 만들어 보았다.
+->scope는 viewModelScope를 사용하여 뷰모델의 생명주기를 따르게 하였다.
 
 Shimmer-android 라이브러리를 활용하여 로딩 화면을 추가하였다.    
 ->일단 shimmer 적용된 레이아웃을 보여주다가, ViewModel이 화면을 표시하기 위한 모델을 가져오는 대로, 
 <br>shimmer 적용된 레이아웃을 숨기고, 실제 레이아웃을 보여주도록 만들어보았다.    
        
-BindingAdapter을 사용해 보았다.
-->image resource id를 xml attribute로 넣으면 imageView로 이미지를 설정하는 간단한 것을 만들어 보았다.    
+DataBinding을 사용하였다. (+BindingAdapter을 사용해 보았다.)
+->image resource id를 xml attribute로 넣으면 imageView로 이미지를 설정하는 간단한 어댑터을 만들어 보았다.    
 
 ## 기능 소개
+
+### OpenAPI를 호출하여 리스폰스를 받을 때까지 로딩 애니메이션을 보여준다.
+
 
 ### 현재 날씨와 온도를 화면에 표시한다.(서울기준)
 
