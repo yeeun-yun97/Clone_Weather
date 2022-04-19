@@ -2,7 +2,6 @@ package com.github.yeeun_yun97.clone.weather_view.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.github.yeeun_yun97.clone.weather_view.R

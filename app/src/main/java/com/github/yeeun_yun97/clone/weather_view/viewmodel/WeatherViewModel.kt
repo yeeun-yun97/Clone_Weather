@@ -36,7 +36,7 @@ class WeatherViewModel : ViewModel() {
                 val temperature = body.main["temp"]!!.toDouble().toInt()
                 val data = WeatherData(status, temperature)
                 Log.d("created Model from API", data.toString())
-
+                delay(2000)
                 weatherData.postValue(data)
             } else {
                 onError("Error: ${response.message()}")

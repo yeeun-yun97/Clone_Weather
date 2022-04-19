@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/button_primary.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3374094202898551" />
         <entry key="app/src/main/res/layout/activity_weather.xml" value="0.2984375" />
         <entry key="app/src/main/res/layout/fragment_currency_converter.xml" value="0.2600908173562059" />
