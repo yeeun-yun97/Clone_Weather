@@ -36,6 +36,22 @@ Shimmer-android 라이브러리를 활용하여 로딩 화면을 추가하였다
 DataBinding을 사용하였다. (+BindingAdapter을 사용해 보았다.)
 ->image resource id를 xml attribute로 넣으면 imageView로 이미지를 설정하는 간단한 어댑터을 만들어 보았다.    
 
+
+### 해맸던 부분, 어려웠던 부분
+- **MVVM**을 사용할 때 ViewModel이 어디부터 어디까지 가지고 있어야 하는지 알기 어려웠다.
+    - ViewModel은 개발자들의 개성에 따라 다르게 구현한다는 것을 알 수 있었다.
+- **LiveData**의 값이 바뀌어도 UI가 전혀 반영되지 않는 오류가 발생하였다.
+    - LiveData의 setValue(postValue)를 사용하여야 반영된다는 것을 알게 되었다.
+        
+        ```kotlin
+        data.value.id=0 (X)
+        
+        data.setValue(postValue)(data.value.copy(id=0)) (O)
+        ```
+        
+- BindingAdapter를 사용하도록 하면 component가 null이라는 오류가 발생하였다.
+    - Kotlin에서는 @**JVMStatic**이라는 어노테이션을 붙여야 한다는 것을 배웠다.
+
 ## 기능 소개
 
 ### OpenAPI를 호출하여 리스폰스를 받을 때까지 로딩 애니메이션을 보여준다.<br>+현재 날씨와 온도를 화면에 표시한다.(서울기준)
